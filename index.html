@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulasi Konsensus Proof-of-Stake</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="dot"></span>
+      <h1>Proof-of-Stake Consensus Simulator</h1>
+    </div>
+    <p class="subtitle">Simulasi interaktif mekanisme konsensus blockchain berbasis Proof-of-Stake (PoS)</p>
+  </header>
+
+  <main class="layout">
+
+    <!-- ================= PANEL KIRI: VALIDATOR & KONTROL ================= -->
+    <section class="panel panel-left">
+      <h2>1. Validator &amp; Staking</h2>
+      <p class="hint">Tambahkan validator beserta jumlah stake (koin) yang mereka kunci. Semakin besar stake, semakin besar peluang terpilih menjadi pembuat blok (block proposer).</p>
+
+      <div class="add-validator">
+        <input id="valName" type="text" placeholder="Nama validator (mis. Node-D)">
+        <input id="valStake" type="number" min="1" placeholder="Jumlah stake">
+        <button id="btnAddValidator" class="btn btn-secondary">+ Tambah</button>
+      </div>
+
+      <div id="validatorList" class="validator-list"></div>
+
+      <h2>2. Kontrol Simulasi</h2>
+      <div class="controls">
+        <button id="btnForgeBlock" class="btn btn-primary">⛏ Forge Block (Pilih Validator)</button>
+        <button id="btnReset" class="btn btn-danger">↺ Reset Simulasi</button>
+      </div>
+
+      <div class="settings">
+        <label class="switch-row">
+          <input type="checkbox" id="chkSlash">
+          <span>Aktifkan risiko <b>slashing</b> (5% peluang validator jahat kehilangan sebagian stake)</span>
+        </label>
+        <label class="switch-row">
+          <input type="checkbox" id="chkFail">
+          <span>Simulasikan validator offline / gagal validasi (10% peluang)</span>
+        </label>
+      </div>
+
+      <h2>3. Log Peristiwa</h2>
+      <div id="eventLog" class="event-log"></div>
+    </section>
+
+    <!-- ================= PANEL KANAN: VISUALISASI ================= -->
+    <section class="panel panel-right">
+      <h2>Peluang Terpilih (Weighted by Stake)</h2>
+      <canvas id="probChart" height="150"></canvas>
+
+      <h2>Blockchain</h2>
+      <div id="chain" class="chain"></div>
+
+      <h2>Statistik</h2>
+      <div class="stats-grid" id="statsGrid"></div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>Dibuat untuk simulasi edukasi konsensus <b>Proof-of-Stake</b> &mdash; tidak terhubung ke blockchain nyata.</p>
+  </footer>
+
+<script src="script.js"></script>
+</body>
+</html>
